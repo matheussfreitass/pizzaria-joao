@@ -40,10 +40,24 @@ if(isset($_SESSION["msg"])){
         </div>
     </nav>
     </header>
-    <?php if($msg !=""): ?>
-        <div class="alert alert-<?= $status?>">
-            <p><? $msg ?></p>
+    <?php if (!empty($msg)): ?>
+    <div class="alert alert-<?= $status ?>" id="alert-box">
         <p><?= $msg ?></p>
-        </div>
-    <?php endif; ?>
+    </div>
+
+    <script>
+        // Aguarda 3 segundos e remove a mensagem
+        setTimeout(function() {
+            var alertBox = document.getElementById("alert-box");
+            if (alertBox) {
+                alertBox.style.transition = "opacity 0.5s ease";
+                alertBox.style.opacity = "0";
+                setTimeout(function() {
+                    alertBox.remove();
+                }, 500);
+            }
+        }, 3000);
+    </script>
+<?php endif; ?>
+
     
